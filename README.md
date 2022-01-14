@@ -10,7 +10,7 @@ La escena consiste en un área verde donde se encuentra un Pikachu. Al igual que
 ## Animaciones
 Las animaciones principales son:
 - **Lanzamiento de pokebola:** Función el lanzamiento de una pokebola para intentar cachar al Pikachu que se encuentra en la escena. Esta acción se activará con la tecla `[ENTER]`.
-- **Captura de Pokemon:** Al igual que en el video juego, cuando el usuario logra atrapar al pokemón se mostrará una animación de luz y estrella para idicar captura exitosa.
+- **Captura de Pokemon:** Al igual que en el video juego, cuando el usuario logra atrapar al pokemón se mostrará una animación de luz y estrella para indicar captura exitosa.
 - **Movimiento de Pikachu:** (Tal vez) Pequeños movimientos que tendrá el modelo de Pikachu como movimiento de orejas y de cabeza. Animación a considerar dependiendo de los assets que podamos encontrar.
 
 ## Tecnologías
