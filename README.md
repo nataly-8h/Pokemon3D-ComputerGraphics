@@ -2,7 +2,7 @@
 
 Project dedicated to creating a scene inspired on the Pokemon game using Three.js for our Computer Graphics class
 
-En este proyecto crearemos una escena inspirada en el video juego Pokemon usando Three.js para nuestra clase de Gráficas computacionales
+En este proyecto crearemos una escena inspirada en el video juego Pokémon GO usando Three.js para nuestra clase de Gráficas computacionales
 
 ## Escena
 La escena consiste en un área verde donde se encuentra un Pikachu. Al igual que en el juego *Pókemon Go!* se existirá la función de lanzar pokebolas hacia el pokemon para intentar atraparlo, lo que necesitará una perspectiva en primera persona.
