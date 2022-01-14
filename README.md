@@ -28,6 +28,7 @@ Los componentes planeados para esta escena son
 - Entrenador Pokemon (Tal vez)
 
 **Imagenes de referencia**
+
 ![imagen](https://user-images.githubusercontent.com/54066974/149452558-66fecd45-5f40-4855-85d8-c8bc7ec5c126.png)
 
 ![imagen](https://user-images.githubusercontent.com/54066974/149452588-af03a3c1-3683-4d6e-b431-019edd040b23.png)
