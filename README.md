@@ -24,6 +24,7 @@ Los componentes planeados para esta escena son
 - Pikachu
 - Pokebola
 - Arboles de fondo
+- Piso de pasto
 - Luz imitando la luz solar a medio día
 - Entrenador Pokemon (Tal vez)
 
