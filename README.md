@@ -3,6 +3,10 @@
 Project dedicated to creating a scene inspired on the Pokemon game using Three.js for our Computer Graphics class
 
 En este proyecto crearemos una escena inspirada en el video juego *Pokémon GO* usando Three.js para nuestra clase de Gráficas Computacionales
+###### Los integrantes del equipo con 
+- Ari Valenzuela - A01635584
+- Carolina Pérez - A01631526
+- Nataly Hernández - A01631314
 
 ## Escena
 La escena consiste en un área verde donde se encuentra un Pikachu. Al igual que en el juego *Pókemon GO* se existirá la función de lanzar pokebolas hacia el pokemon para intentar atraparlo, lo que necesitará una perspectiva en primera persona.
