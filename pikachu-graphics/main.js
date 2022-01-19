@@ -7,6 +7,7 @@ document.querySelector('#app').innerHTML = `
 
 import * as THREE from "https://cdn.skypack.dev/three@0.136.0";
 import { GLTFLoader } from 'https://cdn.skypack.dev/three@0.136.0/examples/jsm/loaders/GLTFLoader.js';
+import { OrbitControls } from 'https://cdn.skypack.dev/three@0.136.0/examples/jsm/controls/OrbitControls.js';
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 0.1, 1000000);
@@ -62,7 +63,7 @@ loader.load('/pokeball/scene.gltf', function (gltf) {
 var ambient = new THREE.AmbientLight(0xffffff, 0.4);
 
 scene.add(ambient);
-
+const controls = new OrbitControls( camera, renderer.domElement );
 
 function animate() {
 	render();
