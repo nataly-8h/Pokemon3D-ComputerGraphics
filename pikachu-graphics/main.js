@@ -24,7 +24,7 @@ var textureLoader  = new THREE.TextureLoader(),
 
   texture.wrapS = THREE.RepeatWrapping;
   texture.wrapT = THREE.RepeatWrapping;
-  texture.repeat.set(3,3);
+  texture.repeat.set(15,15);
 
 var material = new THREE.MeshPhongMaterial({ 
     map: texture,
@@ -35,18 +35,20 @@ sky.material.side = THREE.BackSide;
 scene.add(sky);
 
 camera.position.z = 30;
-camera.rotation.set(0, 50, 0);
+camera.position.y = 2
 
 var loaderPlane  = new THREE.TextureLoader();
 const texturePasto = loaderPlane.load( "/pasto/Pasto.jpeg" );
 texturePasto.wrapS = THREE.RepeatWrapping;
 texturePasto.wrapT = THREE.RepeatWrapping;
-texturePasto.repeat.set(7,7);
+texturePasto.repeat.set(70,70);
 
-const planeGeometry = new THREE.PlaneGeometry(30, 50, 10, 10);
-planeGeometry.rotateX(-2);
+const planeGeometry = new THREE.PlaneGeometry(300, 300, 10, 10);
+
+planeGeometry.rotateX(-1.58);
 const planeMaterial = new THREE.MeshBasicMaterial({map: texturePasto});
 const planeMesh = new THREE.Mesh(planeGeometry, planeMaterial);
+planeMesh.position.y=0;
 scene.add(planeMesh);
 
 loader.load('/pikachu/scene.gltf', function (gltf) {
@@ -55,7 +57,49 @@ loader.load('/pikachu/scene.gltf', function (gltf) {
         gltf.scene.position.y = 0;				    //Position (y = up+, down-)
 	gltf.scene.position.z = 0;				    //Position (z = front +, back-)
 
-	scene.add( gltf.scene );
+  scene.add(gltf.scene);
+
+}, undefined, function (error) {
+
+  console.error(error);
+
+});
+
+loader.load('/blenderassets/pino.glb', function (gltf) {
+	gltf.scene.scale.set( 1, 1, 1 );
+	gltf.scene.position.x = 5;				    //Position (x = right+ left-)
+        gltf.scene.position.y = 0;				    //Position (y = up+, down-)
+	gltf.scene.position.z = 0;				    //Position (z = front +, back-)
+
+  scene.add(gltf.scene);
+
+}, undefined, function (error) {
+
+  console.error(error);
+
+});
+
+loader.load('/blenderassets/arbol3.glb', function (gltf) {
+	gltf.scene.scale.set( 1, 1, 1 );
+	gltf.scene.position.x = -5;				    //Position (x = right+ left-)
+        gltf.scene.position.y = 0;				    //Position (y = up+, down-)
+	gltf.scene.position.z = 0;				    //Position (z = front +, back-)
+
+  scene.add(gltf.scene);
+
+}, undefined, function (error) {
+
+  console.error(error);
+
+});
+
+loader.load('/blenderassets/arbol2.glb', function (gltf) {
+	gltf.scene.scale.set( 1, 1, 1 );
+	gltf.scene.position.z = -5;	
+  gltf.scene.position.x = 7;			    //Position (x = right+ left-)
+        gltf.scene.position.y = 0;				    //Position (y = up+, down-)
+	gltf.scene.position.z = 0;				    //Position (z = front +, back-)
+
   scene.add(gltf.scene);
 
 }, undefined, function (error) {
@@ -66,8 +110,8 @@ loader.load('/pikachu/scene.gltf', function (gltf) {
 
 loader.load('/pokeball/scene.gltf', function (gltf) {
 	gltf.scene.scale.set( 0.4, 0.4, 0.4 );
-	gltf.scene.position.x = 0;				    //Position (x = right+ left-)
-        gltf.scene.position.y = -1;				    //Position (y = up+, down-)
+	gltf.scene.position.x = 1;				    //Position (x = right+ left-)
+        gltf.scene.position.y = 0.5;				    //Position (y = up+, down-)
 	gltf.scene.position.z = 1;				    //Position (z = front +, back-)
 
 
@@ -81,6 +125,12 @@ loader.load('/pokeball/scene.gltf', function (gltf) {
 });
 
 var ambient = new THREE.AmbientLight(0xffffff, 0.6);
+const directionalLight = new THREE.DirectionalLight( 0xffffff, 1 );
+scene.add( directionalLight );
+
+
+const light = new THREE.HemisphereLight( 0xffffbb, 0x080820, 1 );
+scene.add( light );
 
 scene.add(ambient);
 const controls = new OrbitControls( camera, renderer.domElement );
