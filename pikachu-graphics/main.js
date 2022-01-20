@@ -34,15 +34,26 @@ var sky = new THREE.Mesh(skyGeo, material);
 sky.material.side = THREE.BackSide;
 scene.add(sky);
 
-camera.position.z = 5;
+camera.position.z = 6;
 
+var loaderPlane  = new THREE.TextureLoader();
+const texture = loaderPlane.load( "/pasto/Pasto.jpeg" );
+texture.wrapS = THREE.RepeatWrapping;
+texture.wrapT = THREE.RepeatWrapping;
+texture.repeat.set(7,7);
 
-loader.load('/pikachu/scene.gltf', function (gltf) {		
-	gltf.scene.scale.set( 1, 1, 1 );			   
-	gltf.scene.position.x = 0;				    //Position (x = right+ left-) 
+const planeGeometry = new THREE.PlaneGeometry(8, 5, 10, 10);
+planeGeometry.rotateX(-0.78);
+const planeMaterial = new THREE.MeshBasicMaterial({map: texture});
+const planeMesh = new THREE.Mesh(planeGeometry, planeMaterial);
+scene.add(planeMesh);
+
+loader.load('/pikachu/scene.gltf', function (gltf) {
+	gltf.scene.scale.set( 1, 1, 1 );
+	gltf.scene.position.x = 0;				    //Position (x = right+ left-)
         gltf.scene.position.y = 0;				    //Position (y = up+, down-)
 	gltf.scene.position.z = 0;				    //Position (z = front +, back-)
-	
+
 	scene.add( gltf.scene );
   scene.add(gltf.scene);
 
@@ -52,12 +63,12 @@ loader.load('/pikachu/scene.gltf', function (gltf) {
 
 });
 
-loader.load('/pokeball/scene.gltf', function (gltf) {			
-	gltf.scene.scale.set( 0.4, 0.4, 0.4 );			   
-	gltf.scene.position.x = 0;				    //Position (x = right+ left-) 
+loader.load('/pokeball/scene.gltf', function (gltf) {
+	gltf.scene.scale.set( 0.4, 0.4, 0.4 );
+	gltf.scene.position.x = 0;				    //Position (x = right+ left-)
         gltf.scene.position.y = -1;				    //Position (y = up+, down-)
-	gltf.scene.position.z = 0;				    //Position (z = front +, back-)
-	
+	gltf.scene.position.z = 1;				    //Position (z = front +, back-)
+
 
 	scene.add( gltf.scene );
   scene.add(gltf.scene);
@@ -84,6 +95,3 @@ function render() {
 
 render();
 animate();
-
-
-
