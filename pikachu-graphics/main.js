@@ -84,7 +84,7 @@ loader.load('/blenderassets/pino.glb', function (gltf) {
     }
     else if ((x > 0 && x < 10) && (z > 0 && z < 10)) {
       clone.position.x = x + 10;
-      clone.position.z = z + 15;
+      clone.position.z = z + 30;
     }
     scene.add(clone);
   }
@@ -116,7 +116,7 @@ loader.load('/blenderassets/arbol3.glb', function (gltf) {
     }
     else if ((x > 0 && x < 10) && (z > 0 && z < 10)) {
       clone.position.x = x + 10;
-      clone.position.z = z + 15;
+      clone.position.z = z + 30;
     }
     scene.add(clone);
   }
@@ -149,7 +149,7 @@ loader.load('/blenderassets/arbol2.glb', function (gltf) {
     }
     else if ((x > 0 && x < 10) && (z > 0 && z < 10)) {
       clone.position.x = x + 10;
-      clone.position.z = z + 15;
+      clone.position.z = z + 30;
     }
     scene.add(clone);
   }
