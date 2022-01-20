@@ -15,11 +15,24 @@ document.body.appendChild(renderer.domElement);
 const loader = new GLTFLoader();
 renderer.setClearColor( 0xffffff,1)
 
-// let geometry = new THREE.BoxGeometry();
-// let material = new THREE.MeshBasicMaterial({ color: '#131B8B' });
-// let cube = new THREE.Mesh(geometry, material);
-// cube.translateX(-1);
-// scene.add(cube);
+
+//SKY
+
+var skyGeo = new THREE.SphereGeometry(100000, 25, 25); 
+var textureLoader  = new THREE.TextureLoader(),
+  texture = textureLoader.load( "textures/sky.jpg" );
+
+  texture.wrapS = THREE.RepeatWrapping;
+  texture.wrapT = THREE.RepeatWrapping;
+  texture.repeat.set(3,4);
+
+var material = new THREE.MeshPhongMaterial({ 
+    map: texture,
+});
+
+var sky = new THREE.Mesh(skyGeo, material);
+sky.material.side = THREE.BackSide;
+scene.add(sky);
 
 camera.position.z = 5;
 
@@ -55,7 +68,7 @@ loader.load('/pokeball/scene.gltf', function (gltf) {
 
 });
 
-var ambient = new THREE.AmbientLight(0xffffff, 0.4);
+var ambient = new THREE.AmbientLight(0xffffff, 0.6);
 
 scene.add(ambient);
 const controls = new OrbitControls( camera, renderer.domElement );
