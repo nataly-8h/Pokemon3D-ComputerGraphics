@@ -14,8 +14,8 @@ Implementamos una estructura en la que usamos el programa de Vite como servidor 
 
 ## ¿Cómo correr el programa?
 Se entra a la carpeta de pikachu-graphics y se corren los siguientes dos comandos para correr el servidor local de vite y visualizar la escena:
-npm install
-npm run dev
+- npm install
+- npm run dev
 
 ## Escena
 La escena consiste en un área verde donde se encuentra un Pikachu. Al igual que en el juego *Pókemon GO* se existirá la función de lanzar pokebolas hacia el pokemon para intentar atraparlo, lo que necesitará una perspectiva en primera persona.
