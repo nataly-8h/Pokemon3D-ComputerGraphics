@@ -24,7 +24,7 @@ var textureLoader  = new THREE.TextureLoader(),
 
   texture.wrapS = THREE.RepeatWrapping;
   texture.wrapT = THREE.RepeatWrapping;
-  texture.repeat.set(3,4);
+  texture.repeat.set(3,3);
 
 var material = new THREE.MeshPhongMaterial({ 
     map: texture,
@@ -34,17 +34,18 @@ var sky = new THREE.Mesh(skyGeo, material);
 sky.material.side = THREE.BackSide;
 scene.add(sky);
 
-camera.position.z = 6;
+camera.position.z = 30;
+camera.rotation.set(0, 50, 0);
 
 var loaderPlane  = new THREE.TextureLoader();
-const texture = loaderPlane.load( "/pasto/Pasto.jpeg" );
-texture.wrapS = THREE.RepeatWrapping;
-texture.wrapT = THREE.RepeatWrapping;
-texture.repeat.set(7,7);
+const texturePasto = loaderPlane.load( "/pasto/Pasto.jpeg" );
+texturePasto.wrapS = THREE.RepeatWrapping;
+texturePasto.wrapT = THREE.RepeatWrapping;
+texturePasto.repeat.set(7,7);
 
-const planeGeometry = new THREE.PlaneGeometry(8, 5, 10, 10);
-planeGeometry.rotateX(-0.78);
-const planeMaterial = new THREE.MeshBasicMaterial({map: texture});
+const planeGeometry = new THREE.PlaneGeometry(30, 50, 10, 10);
+planeGeometry.rotateX(-2);
+const planeMaterial = new THREE.MeshBasicMaterial({map: texturePasto});
 const planeMesh = new THREE.Mesh(planeGeometry, planeMaterial);
 scene.add(planeMesh);
 
