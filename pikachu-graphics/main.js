@@ -100,6 +100,11 @@ loader.load('/blenderassets/arbol2.glb', function (gltf) {
         gltf.scene.position.y = 0;				    //Position (y = up+, down-)
 	gltf.scene.position.z = 0;				    //Position (z = front +, back-)
 
+
+  //Caro checa esto siu
+  var clone1 = gltf.scene.clone();
+  clone1.position.x = 8;
+  scene.add(clone1);
   scene.add(gltf.scene);
 
 }, undefined, function (error) {
