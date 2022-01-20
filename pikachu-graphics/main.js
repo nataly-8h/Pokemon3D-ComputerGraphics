@@ -1,8 +1,12 @@
 import './style.css'
 
+//Se importan los componentes necesarios para la escena
+
 import * as THREE from "https://cdn.skypack.dev/three@0.136.0";
 import { GLTFLoader } from 'https://cdn.skypack.dev/three@0.136.0/examples/jsm/loaders/GLTFLoader.js';
 import { OrbitControls } from 'https://cdn.skypack.dev/three@0.136.0/examples/jsm/controls/OrbitControls.js';
+
+//Elementos esenciales de la escena
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 0.1, 1000000);
@@ -16,7 +20,7 @@ const loader = new GLTFLoader();
 renderer.setClearColor( 0xffffff,1)
 
 
-//SKY
+//Creación del domo de cielo
 
 var skyGeo = new THREE.SphereGeometry(100000, 25, 25);
 var textureLoader  = new THREE.TextureLoader(),
@@ -34,9 +38,12 @@ var sky = new THREE.Mesh(skyGeo, material);
 sky.material.side = THREE.BackSide;
 scene.add(sky);
 
+//Ajustes de cámara
 camera.position.z = 30;
 camera.position.y = 2
 
+
+//Creación del pasto
 var loaderPlane  = new THREE.TextureLoader();
 const texturePasto = loaderPlane.load( "/pasto/Pasto.jpeg" );
 texturePasto.wrapS = THREE.RepeatWrapping;
@@ -51,6 +58,8 @@ const planeMesh = new THREE.Mesh(planeGeometry, planeMaterial);
 planeMesh.position.y=0;
 scene.add(planeMesh);
 
+
+//Importación del modelo de Pikachu y se agrega a la escena.
 loader.load('/pikachu/scene.gltf', function (gltf) {
 	gltf.scene.scale.set( 1, 1, 1 );
 	gltf.scene.position.x = 0;				    //Position (x = right+ left-)
@@ -64,7 +73,7 @@ loader.load('/pikachu/scene.gltf', function (gltf) {
   console.error(error);
 
 });
-
+//Importación del modelo de nuestro pino hecho en Blender y se agrega a la escena.
 loader.load('/blenderassets/pino.glb', function (gltf) {
 	gltf.scene.scale.set( 1, 1, 1 );
 	gltf.scene.position.x = 5;				    //Position (x = right+ left-)
@@ -72,6 +81,8 @@ loader.load('/blenderassets/pino.glb', function (gltf) {
 	gltf.scene.position.z = 0;				    //Position (z = front +, back-)
 
   var clone = gltf.scene.clone();
+
+  //Se genera un for para poblar la escena con varios pinos
   for (let i = 0; i < 60; i++){
     clone = gltf.scene.clone();
     let x = Math.floor(Math.random() * (100 - -100)) + -100;
@@ -96,7 +107,7 @@ loader.load('/blenderassets/pino.glb', function (gltf) {
 
 });
 
-
+//Importación del modelo de uno de nuestros arboles creados en Blender y se agrega a la escena.
 loader.load('/blenderassets/arbol3.glb', function (gltf) {
 	gltf.scene.scale.set( 1, 1, 1 );
 	gltf.scene.position.x = -5;				    //Position (x = right+ left-)
@@ -104,6 +115,7 @@ loader.load('/blenderassets/arbol3.glb', function (gltf) {
 	gltf.scene.position.z = 0;				    //Position (z = front +, back-)
 
   var clone = gltf.scene.clone();
+   //Se genera un for para poblar la escena con varios arboles
   for (let i = 0; i < 60; i++){
     clone = gltf.scene.clone();
     let x = Math.floor(Math.random() * (100 - -100)) + -100;
@@ -128,7 +140,7 @@ loader.load('/blenderassets/arbol3.glb', function (gltf) {
   console.error(error);
 
 });
-
+//Importación del modelo del segundo de nuestros arboles creados en Blender y se agrega a la escena.
 loader.load('/blenderassets/arbol2.glb', function (gltf) {
 	gltf.scene.scale.set( 1, 1, 1 );
 	gltf.scene.position.z = -5;
@@ -137,6 +149,7 @@ loader.load('/blenderassets/arbol2.glb', function (gltf) {
 	gltf.scene.position.z = 0;				    //Position (z = front +, back-)
 
   var clone = gltf.scene.clone();
+   //Se genera un for para poblar la escena con varios arboles
   for (let i = 0; i < 60; i++){
     clone = gltf.scene.clone();
     let x = Math.floor(Math.random() * (100 - -100)) + -100;
@@ -161,6 +174,7 @@ loader.load('/blenderassets/arbol2.glb', function (gltf) {
 
 });
 
+//Se agrega la pokebola a escena y se importa
 loader.load('/pokeball/scene.gltf', function (gltf) {
 	gltf.scene.scale.set( 0.4, 0.4, 0.4 );
 	gltf.scene.position.x = 1;				    //Position (x = right+ left-)
@@ -177,6 +191,8 @@ loader.load('/pokeball/scene.gltf', function (gltf) {
 
 });
 
+
+//LUCES TEMPORALES
 var ambient = new THREE.AmbientLight(0xffffff, 0.6);
 const directionalLight = new THREE.DirectionalLight( 0xffffff, 1 );
 scene.add( directionalLight );
