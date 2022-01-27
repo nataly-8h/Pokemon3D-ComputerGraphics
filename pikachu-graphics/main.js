@@ -78,12 +78,12 @@ loader.load('/blenderassets/pino.glb', function (gltf) {
     let z = Math.floor(Math.random() * (100 - -100)) + -100;
     clone.position.x = x;
     clone.position.z = z;
-    if ((x > -10 && x < 0) && (z > -10 && z < 0)){
-      clone.position.x = x - 10;
-      clone.position.z = z - 10;
+    if ((x > -10 && x <= 0) && (z >= 0 && z < 15)){
+      clone.position.x = x - 20;
+      clone.position.z = z + 30;
     }
-    else if ((x > 0 && x < 10) && (z > 0 && z < 10)) {
-      clone.position.x = x + 10;
+    else if ((x >= 0 && x < 10) && (z >= 0 && z < 15)) {
+      clone.position.x = x + 20;
       clone.position.z = z + 30;
     }
     scene.add(clone);
@@ -110,12 +110,12 @@ loader.load('/blenderassets/arbol3.glb', function (gltf) {
     let z = Math.floor(Math.random() * (100 - -100)) + -100;
     clone.position.x = x;
     clone.position.z = z;
-    if ((x > -10 && x < 0) && (z > -10 && z < 0)){
-      clone.position.x = x - 10;
-      clone.position.z = z - 10;
+    if ((x > -10 && x <= 0) && (z >= 0 && z < 15)){
+      clone.position.x = x - 20;
+      clone.position.z = z + 30;
     }
-    else if ((x > 0 && x < 10) && (z > 0 && z < 10)) {
-      clone.position.x = x + 10;
+    else if ((x >= 0 && x < 10) && (z >= 0 && z < 15)) {
+      clone.position.x = x + 20;
       clone.position.z = z + 30;
     }
     scene.add(clone);
@@ -143,12 +143,12 @@ loader.load('/blenderassets/arbol2.glb', function (gltf) {
     let z = Math.floor(Math.random() * (100 - -100)) + -100;
     clone.position.x = x;
     clone.position.z = z;
-    if ((x > -10 && x < 0) && (z > -10 && z < 0)){
-      clone.position.x = x - 10;
-      clone.position.z = z - 10;
+    if ((x > -10 && x <= 0) && (z >= 0 && z < 15)){
+      clone.position.x = x - 20;
+      clone.position.z = z + 30;
     }
-    else if ((x > 0 && x < 10) && (z > 0 && z < 10)) {
-      clone.position.x = x + 10;
+    else if ((x >= 0 && x < 10) && (z >= 0 && z < 15)) {
+      clone.position.x = x + 20;
       clone.position.z = z + 30;
     }
     scene.add(clone);
