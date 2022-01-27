@@ -58,8 +58,12 @@ planeGeometry.rotateX(-1.58);
 const planeMaterial = new THREE.MeshBasicMaterial({map: texturePasto});
 const planeMesh = new THREE.Mesh(planeGeometry, planeMaterial);
 planeMesh.position.y=0;
+planeMesh.traverse( function( node ) { if ( node instanceof THREE.Mesh ) { node.receiveShadow = true; } } );
 scene.add(planeMesh);
 
+
+renderer.shadowMapEnabled = true;
+            renderer.shadowMapSoft = true;
 
 
 //Importación del modelo de Pikachu y se agrega a la escena.
@@ -68,7 +72,7 @@ loader.load('/pikachu/scene.gltf', function (gltf) {
 	gltf.scene.position.x = 0;				    //Position (x = right+ left-)
         gltf.scene.position.y = 0;				    //Position (y = up+, down-)
 	gltf.scene.position.z = 0;				    //Position (z = front +, back-)
-
+  gltf.scene.traverse( function( node ) { if ( node instanceof THREE.Mesh ) { node.castShadow = true; } } );
   scene.add(gltf.scene);
 
 }, undefined, function (error) {
@@ -100,8 +104,10 @@ loader.load('/blenderassets/pino.glb', function (gltf) {
       clone.position.x = x + 20;
       clone.position.z = z + 30;
     }
+    clone.traverse( function( node ) { if ( node instanceof THREE.Mesh ) { node.castShadow = true; } } );
     scene.add(clone);
   }
+  gltf.scene.traverse( function( node ) { if ( node instanceof THREE.Mesh ) { node.castShadow = true; } } );
   scene.add(gltf.scene);
 
 }, undefined, function (error) {
@@ -133,9 +139,10 @@ loader.load('/blenderassets/arbol3.glb', function (gltf) {
       clone.position.x = x + 20;
       clone.position.z = z + 30;
     }
+    clone.traverse( function( node ) { if ( node instanceof THREE.Mesh ) { node.castShadow = true; } } );
     scene.add(clone);
   }
-
+  gltf.scene.traverse( function( node ) { if ( node instanceof THREE.Mesh ) { node.castShadow = true; } } );
   scene.add(gltf.scene);
 
 }, undefined, function (error) {
@@ -167,8 +174,10 @@ loader.load('/blenderassets/arbol2.glb', function (gltf) {
       clone.position.x = x + 20;
       clone.position.z = z + 30;
     }
+    clone.traverse( function( node ) { if ( node instanceof THREE.Mesh ) { node.castShadow = true; } } );
     scene.add(clone);
   }
+  gltf.scene.traverse( function( node ) { if ( node instanceof THREE.Mesh ) { node.castShadow = true; } } );
   scene.add(gltf.scene);
 
 }, undefined, function (error) {
@@ -178,7 +187,8 @@ loader.load('/blenderassets/arbol2.glb', function (gltf) {
 });
 
 
-//Adding environment map for the pokeball
+//Añadimos un mapa de ambiente para la escena, para que funcionara la textura de la pokebola, tomando de base esta pregunta de stackoverflow:
+//https://stackoverflow.com/questions/67183618/how-to-add-env-map-onto-gltf-object
 
 const pmremGenerator = new PMREMGenerator(renderer);
   pmremGenerator.compileEquirectangularShader();
@@ -204,7 +214,7 @@ loader.load('/pokeball/scene.gltf', function (gltf) {
 	gltf.scene.position.x = 1;				    //Position (x = right+ left-)
         gltf.scene.position.y = 0.5;				    //Position (y = up+, down-)
 	gltf.scene.position.z  = 0;				    //Position (z = front +, back-)
-
+  gltf.scene.traverse( function( node ) { if ( node instanceof THREE.Mesh ) { node.castShadow = true; } } );
 	scene.add( gltf.scene );
   scene.add(gltf.scene);
 
@@ -216,8 +226,11 @@ loader.load('/pokeball/scene.gltf', function (gltf) {
 
 
 //LUCES TEMPORALES
+
 var ambient = new THREE.AmbientLight(0xe89ed1, 1);
 const directionalLight = new THREE.DirectionalLight( 0xc6514f, 1 );
+directionalLight.castShadow = true;
+//  directionalLight.position.set(new THREE.Vector3(0,1,0));
 scene.add( directionalLight );
 
 scene.add(ambient);
