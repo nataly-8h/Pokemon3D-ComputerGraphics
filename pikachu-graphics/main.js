@@ -67,7 +67,7 @@ const shdowMaterial = new THREE.ShadowMaterial(); //material transparente en tod
 shdowMaterial.opacity = 1;
 
 const planeShadowMesh = new THREE.Mesh(planeGeometry, shdowMaterial); //otro plano con la textura de shadow
-planeShadowMesh.position.y = 1;
+planeShadowMesh.position.y = 0;
 planeShadowMesh.receiveShadow = true;
 scene.add(planeShadowMesh);
 
@@ -240,6 +240,11 @@ loader.load('/pokeball/scene.gltf', function (gltf) {
 var ambient = new THREE.AmbientLight(0xe89ed1, 1);
 const directionalLight = new THREE.DirectionalLight(0xc6514f, 1);
 directionalLight.position.set(5, 10, -10);
+var side = 100;
+directionalLight.shadow.camera.top = side;
+directionalLight.shadow.camera.bottom = -side;
+directionalLight.shadow.camera.left = side;
+directionalLight.shadow.camera.right = -side;
 directionalLight.castShadow = true;
 //  directionalLight.position.set(new THREE.Vector3(0,1,0));
 scene.add(directionalLight);
