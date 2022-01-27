@@ -4,6 +4,8 @@ import './style.css'
 
 import * as THREE from "https://cdn.skypack.dev/three@0.136.0";
 import { GLTFLoader } from 'https://cdn.skypack.dev/three@0.136.0/examples/jsm/loaders/GLTFLoader.js';
+import { PMREMGenerator } from 'https://cdn.skypack.dev/three@0.136.0/src/extras/PMREMGenerator.js';
+import { RGBELoader } from 'https://cdn.skypack.dev/three@0.136.0/examples/jsm/loaders/RGBELoader.js';
 import { OrbitControls } from 'https://cdn.skypack.dev/three@0.136.0/examples/jsm/controls/OrbitControls.js';
 
 //Elementos esenciales de la escena
@@ -59,6 +61,7 @@ planeMesh.position.y=0;
 scene.add(planeMesh);
 
 
+
 //Importación del modelo de Pikachu y se agrega a la escena.
 loader.load('/pikachu/scene.gltf', function (gltf) {
 	gltf.scene.scale.set( 1, 1, 1 );
@@ -89,12 +92,12 @@ loader.load('/blenderassets/pino.glb', function (gltf) {
     let z = Math.floor(Math.random() * (100 - -100)) + -100;
     clone.position.x = x;
     clone.position.z = z;
-    if ((x > -10 && x < 0) && (z > -10 && z < 0)){
-      clone.position.x = x - 10;
+    if ((x > -20 && x < 0) && (z > -10 && z < 0)){
+      clone.position.x = x - 20;
       clone.position.z = z - 10;
     }
-    else if ((x > 0 && x < 10) && (z > 0 && z < 10)) {
-      clone.position.x = x + 10;
+    else if ((x > 0 && x < 20) && (z > 0 && z < 10)) {
+      clone.position.x = x + 20;
       clone.position.z = z + 30;
     }
     scene.add(clone);
@@ -122,12 +125,12 @@ loader.load('/blenderassets/arbol3.glb', function (gltf) {
     let z = Math.floor(Math.random() * (100 - -100)) + -100;
     clone.position.x = x;
     clone.position.z = z;
-    if ((x > -10 && x < 0) && (z > -10 && z < 0)){
-      clone.position.x = x - 10;
+    if ((x > -20 && x < 0) && (z > -10 && z < 0)){
+      clone.position.x = x - 20;
       clone.position.z = z - 10;
     }
-    else if ((x > 0 && x < 10) && (z > 0 && z < 10)) {
-      clone.position.x = x + 10;
+    else if ((x > 0 && x < 20) && (z > 0 && z < 10)) {
+      clone.position.x = x + 20;
       clone.position.z = z + 30;
     }
     scene.add(clone);
@@ -156,12 +159,12 @@ loader.load('/blenderassets/arbol2.glb', function (gltf) {
     let z = Math.floor(Math.random() * (100 - -100)) + -100;
     clone.position.x = x;
     clone.position.z = z;
-    if ((x > -10 && x < 0) && (z > -10 && z < 0)){
-      clone.position.x = x - 10;
+    if ((x > -20 && x < 0) && (z > -10 && z < 0)){
+      clone.position.x = x - 20;
       clone.position.z = z - 10;
     }
-    else if ((x > 0 && x < 10) && (z > 0 && z < 10)) {
-      clone.position.x = x + 10;
+    else if ((x > 0 && x < 20) && (z > 0 && z < 10)) {
+      clone.position.x = x + 20;
       clone.position.z = z + 30;
     }
     scene.add(clone);
@@ -174,13 +177,33 @@ loader.load('/blenderassets/arbol2.glb', function (gltf) {
 
 });
 
+
+//Adding environment map for the pokeball
+
+const pmremGenerator = new PMREMGenerator(renderer);
+  pmremGenerator.compileEquirectangularShader();
+
+  const rgbeLoader = new RGBELoader();
+  rgbeLoader.load('https://threejs.org/examples/textures/equirectangular/venice_sunset_1k.hdr', function(texture) {
+
+    const envMap = pmremGenerator.fromEquirectangular(texture).texture;
+
+    scene.background = envMap;
+    scene.environment = envMap;
+
+    texture.dispose();
+    pmremGenerator.dispose();
+
+    
+
+  });
+
 //Se agrega la pokebola a escena y se importa
 loader.load('/pokeball/scene.gltf', function (gltf) {
 	gltf.scene.scale.set( 0.4, 0.4, 0.4 );
 	gltf.scene.position.x = 1;				    //Position (x = right+ left-)
         gltf.scene.position.y = 0.5;				    //Position (y = up+, down-)
-	gltf.scene.position.z = 1;				    //Position (z = front +, back-)
-
+	gltf.scene.position.z  = 0;				    //Position (z = front +, back-)
 
 	scene.add( gltf.scene );
   scene.add(gltf.scene);
@@ -193,13 +216,9 @@ loader.load('/pokeball/scene.gltf', function (gltf) {
 
 
 //LUCES TEMPORALES
-var ambient = new THREE.AmbientLight(0xffffff, 0.6);
-const directionalLight = new THREE.DirectionalLight( 0xffffff, 1 );
+var ambient = new THREE.AmbientLight(0xe89ed1, 1);
+const directionalLight = new THREE.DirectionalLight( 0xc6514f, 1 );
 scene.add( directionalLight );
-
-
-const light = new THREE.HemisphereLight( 0xffffbb, 0x080820, 1 );
-scene.add( light );
 
 scene.add(ambient);
 const controls = new OrbitControls( camera, renderer.domElement );
