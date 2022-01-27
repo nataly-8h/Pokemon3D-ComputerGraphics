@@ -107,13 +107,13 @@ loader.load('/blenderassets/pino.glb', function (gltf) {
     clone.position.x = x;
     clone.position.z = z;
 
-    if ((x > -10 && x <= 0) && (z >= 0 && z < 15)){
+    if ((x > -10 && x <= 0) && (z >= 0 && z < 30)){
       clone.position.x = x - 20;
-      clone.position.z = z + 30;
+      clone.position.z = z + 40;
     }
-    else if ((x >= 0 && x < 10) && (z >= 0 && z < 15)) {
+    else if ((x >= 0 && x < 10) && (z >= 0 && z < 30)) {
       clone.position.x = x + 20;
-      clone.position.z = z + 30;
+      clone.position.z = z + 40;
     }
     clone.traverse(function (node) { if (node instanceof THREE.Mesh) { node.castShadow = true; } });
     scene.add(clone);
@@ -142,14 +142,14 @@ loader.load('/blenderassets/arbol3.glb', function (gltf) {
     let z = Math.floor(Math.random() * (100 - -100)) + -100;
     clone.position.x = x;
     clone.position.z = z;
-    
-    if ((x > -10 && x <= 0) && (z >= 0 && z < 15)){
+
+    if ((x > -10 && x <= 0) && (z >= 0 && z < 30)){
       clone.position.x = x - 20;
-      clone.position.z = z + 30;
+      clone.position.z = z + 40;
     }
-    else if ((x >= 0 && x < 10) && (z >= 0 && z < 15)) {
+    else if ((x >= 0 && x < 10) && (z >= 0 && z < 30)) {
       clone.position.x = x + 20;
-      clone.position.z = z + 30;
+      clone.position.z = z + 40;
     }
     clone.traverse(function (node) { if (node instanceof THREE.Mesh) { node.castShadow = true; } });
     scene.add(clone);
@@ -178,14 +178,14 @@ loader.load('/blenderassets/arbol2.glb', function (gltf) {
     let z = Math.floor(Math.random() * (100 - -100)) + -100;
     clone.position.x = x;
     clone.position.z = z;
-    
-    if ((x > -10 && x <= 0) && (z >= 0 && z < 15)){
+
+    if ((x > -10 && x <= 0) && (z >= 0 && z < 30)){
       clone.position.x = x - 20;
-      clone.position.z = z + 30;
+      clone.position.z = z + 40;
     }
-    else if ((x >= 0 && x < 10) && (z >= 0 && z < 15)) {
+    else if ((x >= 0 && x < 10) && (z >= 0 && z < 30)) {
       clone.position.x = x + 20;
-      clone.position.z = z + 30;
+      clone.position.z = z + 40;
     }
     clone.traverse(function (node) { if (node instanceof THREE.Mesh) { node.castShadow = true; } });
     scene.add(clone);
