@@ -33,7 +33,7 @@ texture.wrapS = THREE.RepeatWrapping;
 texture.wrapT = THREE.RepeatWrapping;
 texture.repeat.set(15, 15);
 
-var material = new THREE.MeshPhongMaterial({
+var material = new THREE.MeshBasicMaterial({
   map: texture,
 });
 
@@ -251,8 +251,8 @@ loader.load('/pokeball/scene.gltf', function (gltf) {
 
 //LUCES TEMPORALES
 
-var ambient = new THREE.AmbientLight(0xe89ed1, 1);
-const directionalLight = new THREE.DirectionalLight(0xc6514f, 1);
+var ambient = new THREE.AmbientLight(0xEC8950, 0.7);
+const directionalLight = new THREE.DirectionalLight(0xDF834E, 0.5);
 directionalLight.position.set(5, 10, -10);
 var side = 100;
 directionalLight.shadow.camera.top = side;
