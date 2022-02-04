@@ -9,7 +9,8 @@ import { RGBELoader } from 'https://cdn.skypack.dev/three@0.136.0/examples/jsm/l
 import { OrbitControls } from 'https://cdn.skypack.dev/three@0.136.0/examples/jsm/controls/OrbitControls.js';
 
 //Elementos esenciales de la escena
-
+var clock = new THREE.Clock();
+var mixer;
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 0.1, 1000000);
 
@@ -78,6 +79,9 @@ renderer.shadowMapSoft = true;
 
 //Importación del modelo de Pikachu y se agrega a la escena.
 loader.load('/pikachu/scene.gltf', function (gltf) {
+  mixer = new THREE.AnimationMixer( gltf.scene );
+  console.log(gltf.animations[1]);
+  mixer.clipAction(gltf.animations[1]).play();
   gltf.scene.scale.set(1, 1, 1);
   gltf.scene.position.x = 0;				    //Position (x = right+ left-)
   gltf.scene.position.y = 0;				    //Position (y = up+, down-)
@@ -220,9 +224,16 @@ rgbeLoader.load('https://threejs.org/examples/textures/equirectangular/venice_su
 
 
 });
-
+var mixer2;
 //Se agrega la pokebola a escena y se importa
 loader.load('/pokeball/scene.gltf', function (gltf) {
+  mixer2 = new THREE.AnimationMixer( gltf.scene );
+  var animation = mixer2.clipAction(gltf.animations[0])
+  animation.setLoop(THREE.LoopOnce);
+  animation.clampWhenFinished = true;
+  animation.enable = true;
+  animation.play()
+        
   gltf.scene.scale.set(0.4, 0.4, 0.4);
   gltf.scene.position.x = 1;				    //Position (x = right+ left-)
   gltf.scene.position.y = 0.5;				    //Position (y = up+, down-)
@@ -256,8 +267,14 @@ scene.add(ambient);
 const controls = new OrbitControls(camera, renderer.domElement);
 
 function animate() {
-  render();
-  requestAnimationFrame(animate);
+  requestAnimationFrame( animate );
+  
+  var delta = clock.getDelta();
+  
+  if ( mixer ) mixer.update( delta );
+  if ( mixer2 ) mixer2.update( delta );
+
+  renderer.render( scene, camera );
 }
 
 function render() {
